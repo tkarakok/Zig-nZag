@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+
     [SerializeField] private float _speed;
     private Rigidbody _rigidbody;
     private bool _forward = true;
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                GameManager.Instance.Score++;
+                UIManager.Instance.UpdateScoreText();
                 if (_forward)
                 {
                     _forward = false;

@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    private int _score;
+
+
+    public int Score { get => _score; set => _score = value; }
+
+    private void Start()
     {
         
+        Score = 0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
