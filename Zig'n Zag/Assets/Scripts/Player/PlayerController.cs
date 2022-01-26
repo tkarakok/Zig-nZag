@@ -13,10 +13,15 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            StateManager.Instance.state = State.InGame;
+        }
         if (StateManager.Instance.state == State.InGame)
         {
             if (Input.GetMouseButtonDown(0))
@@ -24,15 +29,11 @@ public class PlayerController : MonoBehaviour
                 if (_forward)
                 {
                     _forward = false;
-                    _rigidbody.constraints = RigidbodyConstraints.None;
-                    _rigidbody.constraints = RigidbodyConstraints.FreezePositionX;
                     direction = Vector3.left;
                 }
                 else
                 {
                     _forward = true;
-                    _rigidbody.constraints = RigidbodyConstraints.None;
-                    _rigidbody.constraints = RigidbodyConstraints.FreezePositionZ;
                     direction = Vector3.forward;
                 }
             }
