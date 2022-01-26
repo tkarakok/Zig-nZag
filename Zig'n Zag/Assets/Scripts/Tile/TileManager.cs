@@ -4,21 +4,68 @@ using UnityEngine;
 
 public class TileManager : Singleton<TileManager>
 {
-    [SerializeField]private GameObject _lastTile;
-    public GameObject tilePrefab;
+   
     public Transform tileParent;
+    public float spawnTileSpeed;
+    [SerializeField] private GameObject _lastTile;
 
-    private void Start()
+
+    [System.Serializable]
+    public struct Tile
     {
-        for (int i = 0; i < 20; i++)
-        {
-            TileSpawner();
-        }
+        public Queue<GameObject> tileQueue;
+        public GameObject tilePrefab;
+        public int totalTile;
     }
 
-    public void TileSpawner()
+    [SerializeField] Tile tilePool;
+
+    private void Awake()
     {
-        GameObject tile = Instantiate(tilePrefab, tileParent);
+        tilePool.tileQueue = new Queue<GameObject>();
+        for (int i = 0; i < tilePool.totalTile; i++)
+        {
+            GameObject tile = Instantiate(tilePool.tilePrefab, tileParent);
+            tile.SetActive(false);
+            tilePool.tileQueue.Enqueue(tile);
+        }
+        for (int i = 0; i < 30; i++)
+        {
+            SpawnTile();
+        }
+
+        StartSpawnTile();
+    }
+
+    // get tile object
+    public GameObject GetTile()
+    {
+        GameObject tile = tilePool.tileQueue.Dequeue();
+        tile.SetActive(true);
+        tilePool.tileQueue.Enqueue(tile);
+        return tile;
+    }
+
+    // start spawn tile corotuine for in game
+    public void StartSpawnTile()
+    {
+        StartCoroutine(SpawnTileInGame());
+    }
+
+    IEnumerator SpawnTileInGame()
+    {
+        while (true)
+        {
+            SpawnTile();
+            yield return new WaitForSeconds(spawnTileSpeed);
+        }
+        
+    }
+
+    // when we were first start game this function called
+    void SpawnTile()
+    {
+        var tile = GetTile();
         int random = Random.Range(0, 2);
         if (random == 0)
         {
