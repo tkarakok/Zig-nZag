@@ -12,17 +12,12 @@ public enum State
     EndGame
 }
 
-public class StateManager : MonoBehaviour
+public class StateManager : Singleton<StateManager>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public State state;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        state = State.MainMenu;
     }
 }
