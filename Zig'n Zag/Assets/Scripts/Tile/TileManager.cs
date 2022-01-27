@@ -4,29 +4,49 @@ using UnityEngine;
 
 public class TileManager : Singleton<TileManager>
 {
-
+    [Header("Tile Objects")]
     public Transform tileParent, diamondParent;
     public GameObject diamondPrefab;
+    [Header("Spawn Speed Settings")]
     public float spawnTileSpeed;
+    [Header("Game Mode and Spawn Position")]
+    public Transform[] upPoints;
+    public Transform[] downPoints;
+    [Header("Eulor For Tile")]
+    public Quaternion downRotation;
+    [Header("Last Tile")]
     [SerializeField] private GameObject _lastTile;
-
-    [System.Serializable]
-    public struct Tile
+    [System.Serializable] public struct Tile
     {
         public Queue<GameObject> tileQueue;
         public GameObject tilePrefab;
         public int totalTile;
     }
-
+    [Header("Tile Pool")]
     [SerializeField] Tile tilePool;
 
 
-    private void Awake()
+    public void FirstStart()
     {
+        if (GameManager.Instance.GameMode == GameMode.Down)
+        {
+            _lastTile.transform.position = downPoints[Random.Range(0, downPoints.Length)].position;
+            _lastTile.transform.rotation = downRotation;
+        }
+        else
+        {
+            _lastTile.transform.position = upPoints[Random.Range(0, upPoints.Length)].position;
+            
+        }
+
         tilePool.tileQueue = new Queue<GameObject>();
         for (int i = 0; i < tilePool.totalTile; i++)
         {
             GameObject tile = Instantiate(tilePool.tilePrefab, tileParent);
+            if (GameManager.Instance.GameMode == GameMode.Down)
+            {
+                tile.transform.rotation = downRotation;
+            }
             tile.SetActive(false);
             tilePool.tileQueue.Enqueue(tile);
         }
@@ -63,7 +83,7 @@ public class TileManager : Singleton<TileManager>
     }
 
     // when we were first start game this function called
-    void SpawnTile()
+    public void SpawnTile()
     {
         var tile = GetTile();
         int random = Random.Range(0, 2);

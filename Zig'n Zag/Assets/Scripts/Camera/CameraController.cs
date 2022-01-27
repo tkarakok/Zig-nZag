@@ -1,20 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class CameraController : MonoBehaviour
+public class CameraController : Singleton<CameraController>
 {
-    [SerializeField] private Transform _target;
-    private Vector3 _offset;
+    public Vector3 position, rotation;
 
-    private void Start()
+   public void ChangePOsition()
     {
-        _offset = gameObject.transform.position - _target.position;
-    }
-
-    private void LateUpdate()
-    {
-        Vector3 targetPosition = _target.position + _offset;
-        transform.position = targetPosition;
+        transform.DOMove(position, 1);
+        transform.DORotate(rotation, 1);
     }
 }

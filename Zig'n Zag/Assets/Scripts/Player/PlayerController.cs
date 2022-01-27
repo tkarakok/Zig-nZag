@@ -21,10 +21,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StateManager.Instance.state = State.InGame;
-        }
+        
         if (StateManager.Instance.state == State.InGame)
         {
             if (Input.GetMouseButtonDown(0))
@@ -34,7 +31,14 @@ public class PlayerController : Singleton<PlayerController>
                 if (_forward)
                 {
                     _forward = false;
-                     direction = Vector3.left;
+                    if (GameManager.Instance.GameMode == GameMode.Up)
+                    {
+                        direction = Vector3.left;
+                    }
+                    else
+                    {
+                        direction = Vector3.right;
+                    }
                 }
                 else
                 {
