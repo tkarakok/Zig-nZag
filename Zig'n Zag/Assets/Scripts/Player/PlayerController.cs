@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
-{
 
+[RequireComponent(typeof(Rigidbody))]
+public class PlayerController : Singleton<PlayerController>
+{
+    
     [SerializeField] private float _speed;
     private Rigidbody _rigidbody;
     private bool _forward = true;
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
                 if (_forward)
                 {
                     _forward = false;
-                    direction = Vector3.left;
+                     direction = Vector3.left;
                 }
                 else
                 {

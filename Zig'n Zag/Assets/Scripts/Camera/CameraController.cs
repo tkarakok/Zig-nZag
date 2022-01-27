@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform _target;
     private Vector3 _offset;
 
-
     private void Start()
     {
         _offset = gameObject.transform.position - _target.position;

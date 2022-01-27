@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerCollisionController : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class PlayerCollisionController : MonoBehaviour
         {
             Destroy(other.gameObject);
             GameManager.Instance.Score += 2;
-            UIManager.Instance.UpdateScoreText();
             UIManager.Instance.PointTextAnimation();
         }
+        
     }
 }

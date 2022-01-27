@@ -18,6 +18,6 @@ public class UIManager : Singleton<UIManager>
     public void PointTextAnimation()
     {
         var point = Instantiate(pointText,canvas);
-        point.transform.DOMove(scoreText.transform.position,1).OnComplete(()=> Destroy(point));
+        point.transform.DOMove(scoreText.transform.position,1).OnComplete(() => UpdateScoreText()).OnComplete(()=> Destroy(point));
     }
 }
