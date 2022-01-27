@@ -5,7 +5,8 @@ using UnityEngine;
 public class TileManager : Singleton<TileManager>
 {
    
-    public Transform tileParent;
+    public Transform tileParent,diamondParent;
+    public GameObject diamondPrefab;
     public float spawnTileSpeed;
     [SerializeField] private GameObject _lastTile;
 
@@ -71,11 +72,27 @@ public class TileManager : Singleton<TileManager>
         {
             tile.transform.position = _lastTile.transform.GetChild(0).position;
             _lastTile = tile;
+            SpawnDiamond(tile);
         }
         else
         {
             tile.transform.position = _lastTile.transform.GetChild(1).position;
             _lastTile = tile;
+            SpawnDiamond(tile);
+        }
+    }
+
+    void SpawnDiamond(GameObject tile)
+    {
+        int diamondRandom = Random.Range(0, 100);
+        if (diamondRandom <= 85)
+        {
+
+        }
+        else if (diamondRandom > 85)
+        {
+            GameObject diamond = Instantiate(diamondPrefab, diamondParent);
+            diamond.transform.position = tile.transform.GetChild(2).transform.position;
         }
     }
 }
