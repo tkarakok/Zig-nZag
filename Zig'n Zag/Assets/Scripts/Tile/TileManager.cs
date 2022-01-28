@@ -85,6 +85,10 @@ public class TileManager : Singleton<TileManager>
     // when we were first start game this function called
     public void SpawnTile()
     {
+        if (StateManager.Instance.state == State.EndGame)
+        {
+            return;
+        }
         var tile = GetTile();
         int random = Random.Range(0, 2);
         if (random == 0)

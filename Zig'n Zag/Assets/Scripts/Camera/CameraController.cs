@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class CameraController : Singleton<CameraController>
 {
-    public Vector3 position, rotation;
+    public GameObject upCamera, downCamera;
+    private GameObject _currentCamera;
 
-   public void ChangePOsition()
+    public GameObject CurrentCamera { get => _currentCamera; set => _currentCamera = value; }
+
+    private void Start()
     {
-        transform.DOMove(position, 1);
-        transform.DORotate(rotation, 1);
+        CurrentCamera = upCamera;
+    }
+    public void ChangePOsition()
+    {
+        upCamera.SetActive(false);
+        downCamera.SetActive(true);
+        CurrentCamera = downCamera;
     }
 }

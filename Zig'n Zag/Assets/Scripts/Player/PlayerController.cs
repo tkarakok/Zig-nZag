@@ -21,7 +21,6 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
-        
         if (StateManager.Instance.state == State.InGame)
         {
             if (Input.GetMouseButtonDown(0))
@@ -48,6 +47,8 @@ public class PlayerController : Singleton<PlayerController>
             }
             transform.Translate(direction * _speed * Time.deltaTime);
         }
+        
+
     }
 
 

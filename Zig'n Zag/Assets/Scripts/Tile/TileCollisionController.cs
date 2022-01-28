@@ -19,6 +19,6 @@ public class TileCollisionController : MonoBehaviour
     IEnumerator DownTile()
     {
         yield return new WaitForSeconds(downTileSpeed);
-        transform.DOMove(new Vector3(transform.position.x,-1,transform.position.z),2);
+        transform.DOMove(new Vector3(transform.position.x,-1,transform.position.z),2).OnComplete(() => gameObject.SetActive(false));
     }
 }

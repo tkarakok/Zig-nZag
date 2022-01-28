@@ -13,6 +13,13 @@ public class PlayerCollisionController : MonoBehaviour
             GameManager.Instance.Score += 2;
             UIManager.Instance.PointTextAnimation();
         }
-        
+        else if (other.CompareTag("GameOver"))
+        {
+            StateManager.Instance.state = State.EndGame;
+            CameraController.Instance.CurrentCamera.transform.SetParent(null);
+            UIManager.Instance.GameOver();
+
+        }
+
     }
 }
