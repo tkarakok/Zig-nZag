@@ -25,7 +25,12 @@ public class PlayerController : Singleton<PlayerController>
         {
             if (Input.GetMouseButtonDown(0))
             {
+                SoundManager.Instance.PlaySound(SoundManager.Instance.movementClip);
                 GameManager.Instance.Score++;
+                if (GameManager.Instance.Score %50 == 0)
+                {
+                    GameManager.Instance.ChangeColor();
+                }
                 UIManager.Instance.UpdateScoreText();
                 if (_forward)
                 {

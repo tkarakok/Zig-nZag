@@ -24,6 +24,8 @@ public class EventManager : Singleton<EventManager>
 
         EndGame += UIManager.Instance.GameOver;
         EndGame += AdManager.Instance.InterstitialAdShow;
+        EndGame += GameManager.Instance.ChangeDefaultColor;
+        EndGame += PlayGameServiceManager.Instance.AddScoreToLeaderboard;
 
         Diamond += UIManager.Instance.PointTextAnimation;
         Diamond += GameManager.Instance.CollectDiamond;

@@ -1,6 +1,7 @@
 <dependencies>
   <packages>
     <package>com.google.android.gms:play-services-ads:20.2.0</package>
+    <package>com.google.games:gpgs-plugin-support:0.10.14</package>
   </packages>
   <files>
     <file>Assets/Plugins/Android/androidx.annotation.annotation-1.1.0.jar</file>
@@ -41,19 +42,27 @@
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-base-20.2.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-identifier-17.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-20.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-19.2.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-api-phone-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-auth-base-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-base-17.5.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-basement-17.6.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-drive-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-games-21.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-base-18.0.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.gms.play-services-measurement-sdk-api-18.0.0.aar</file>
-    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-nearby-18.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.android.gms.play-services-tasks-17.2.0.aar</file>
     <file>Assets/Plugins/Android/com.google.android.ump.user-messaging-platform-1.0.0.aar</file>
+    <file>Assets/Plugins/Android/com.google.games.gpgs-plugin-support-0.10.14.aar</file>
     <file>Assets/Plugins/Android/com.google.guava.listenablefuture-1.0.jar</file>
   </files>
   <settings>
-    <setting name="androidAbis" value="armeabi-v7a" />
-    <setting name="bundleId" value="com.DefaultCompany.ZignZag" />
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
+    <setting name="bundleId" value="com.avenpigame.ZignZag2" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
-    <setting name="gradlePropertiesTemplateEnabled" value="False" />
+    <setting name="gradlePropertiesTemplateEnabled" value="True" />
     <setting name="gradleTemplateEnabled" value="False" />
     <setting name="installAndroidPackages" value="True" />
     <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />

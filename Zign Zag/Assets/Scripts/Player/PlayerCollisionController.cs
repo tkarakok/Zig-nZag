@@ -8,8 +8,10 @@ public class PlayerCollisionController : MonoBehaviour
     {
         if (other.CompareTag("Diamond"))
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.collectClip);
             EventManager.Instance.Diamond();
             other.transform.GetChild(0).gameObject.SetActive(true);
+            other.gameObject.GetComponent<MeshRenderer>().enabled = false;
             Destroy(other.gameObject,.5f);
             
         }
